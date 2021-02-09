@@ -82,7 +82,7 @@ chains:
       - id: nimbus
         name: Nimbus
         desc: made by Status.im
-        image: statusim/nimbus-eth2:amd64-v1.0.7
+        image: kidkal/nimbus-eth2:v1.0.7-rocketpool
         link: https://nimbus.guide/intro.html
         params:
         - name: Custom Graffiti

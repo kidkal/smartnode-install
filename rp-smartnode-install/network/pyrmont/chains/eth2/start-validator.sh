@@ -40,7 +40,17 @@ fi
 # Nimbus startup
 if [ "$CLIENT" = "nimbus" ]; then
 
-    # Do nothing since the validator is built into the beacon client
-    sleep infinity
+    # Split out the provider string and resolve ip address
+    ETH2HOST=${ETH2_PROVIDER%%:*}
+    ETH2PORT=${ETH2_PROVIDER##*:}
+    getentstr=`getent hosts $ETH2HOST`
+    ETH2IP=${getentstr%% *}
+    
+    exec /home/user/nimbus-eth2/build/nimbus_validator_client \
+        --non-interactive \
+        --validators-dir=/data/validators/nimbus/validators \
+        --secrets-dir=/data/validators/nimbus/secrets \
+        --rpc-port=$ETH2PORT \
+        --rpc-address=$ETH2IP \
 
 fi
